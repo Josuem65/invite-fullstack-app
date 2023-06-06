@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.allGoingDiv, .allNotGoingDiv {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width:100%;
+}
+
+.eachUserDiv {
+    border: 1px solid rgb(221, 221, 221);
+    width: 19%;
+    height: auto;
+    background-color: rgb(238, 238, 238);
+    margin: 1% 0 0 1%;
+}
+
+.userImgDiv {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 19% 15%;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.userThumbnail {
+    border-radius: 50%;
+    box-shadow: 0 0 5px 1px rgb(82, 82, 82);
+}
+
+.eachUserInfo {
+    padding-bottom: 4%;
+}
+
+.usersEmail {
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }

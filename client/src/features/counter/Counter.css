@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.tallyCount {
+    display: flex;
+    margin: auto;
+    width: 19%;
+    justify-content: space-between;
+}
+
+.tallyCount span {
+    margin: auto 10% auto 10%;
+}
+
+
+/* Main component class*/
+.userCard {
+    border: 1px solid rgb(221, 221, 221);
+    width: 19%;
+    height: auto;
+    background-color: rgb(238, 238, 238);
+    margin: auto;
+}
+
+.imgDiv {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 15%;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.userImg {
+    border-radius: 50%;
+    box-shadow: 0 0 5px 1px rgb(82, 82, 82);
+}
+
+.userInfoDiv {
+    display: flex;
+    border-bottom: 1px solid rgb(221, 221, 221)
+}
+
+.name {
+    display: flex;
+    padding: 3%;
+}
+
+.phone {
+    display: flex;
+    padding: 3%;
+}
+
+.email {
+    display: flex;
+    padding: 3%;
+}
+
+.bold {
+    font-weight: bold;
+    margin-right: .3em
+}
+
+.userInfoDiv{
+    display: block;
+}
+
+.BtnDiv {
+    display: flex;
+    justify-content: space-around;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.BtnDiv {
+
+}
+
+.notGoingBtn {
+    border: none;
+    background-color: rgb(244, 67, 54);
+    color: white;
+    margin: 1em auto 1em auto;
+    padding: .40em 1.25em .40em 1.25em;
+}
+
+.goingBtn {
+    border: none;
+    background-color: rgb(76, 175, 80);
+    color: white;
+    margin: 1em auto 1em auto;
+    padding: .40em 1.25em .40em 1.25em;
+}

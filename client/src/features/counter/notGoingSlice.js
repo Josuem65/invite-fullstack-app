@@ -28,7 +28,7 @@ export const { display } = notGoingSlice.actions;
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 export const getNotGoing = async => (dispatch) => {
-  axios.get('/api/notGoing').then(resp => {
+  axios.get('http://localhost:3001/api/notgoing').then(resp => {
     if(resp.data) {dispatch(display(resp.data))}
   })
 };

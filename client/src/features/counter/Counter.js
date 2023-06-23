@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUser, going, notGoing, selectError, selectLoading, selectUserInfo, selectGoing, selectNotGoing } from './counterSlice';
+import { getUser, tally, going, notGoing, selectError, selectLoading, selectUserInfo, selectGoing, selectNotGoing } from './counterSlice';
 // import { selectGoing } from './goingSlice';
 // import {  selectNotGoing } from './notGoingSlice';
 import { FaCheck, FaUserSlash } from "react-icons/fa"
@@ -12,11 +12,11 @@ export function Counter() {
   const error = useSelector(selectError)
   const goingAmount = useSelector(selectGoing)
   const notGoingAmount = useSelector(selectNotGoing)
-  console.log('first console.log')
-  console.log(goingAmount)
+  
   useEffect(() => {
     if(loading) {
       dispatch(getUser(dispatch))
+      dispatch(tally(dispatch))
       console.log('dispatch')
     } else {
       console.log('did not dispatch')
@@ -32,14 +32,13 @@ export function Counter() {
   function handleNotGoing(user, dispatch) {
     dispatch(notGoing(user, dispatch))
   }
-  
-  console.log(user.results[0])  
+
 
   function renderUser(user) {
     if (loading) return <strong>Loading please wait...</strong>;
     
     if (error) return <strong>Items not available at this time</strong>;
-      
+    
     return (
       <>
       <div className="tallyCount">

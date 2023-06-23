@@ -1,9 +1,11 @@
 const express = require('express')
 const axios = require("axios");
 const app = express()
+const cors = require('cors');
 
 app.use(express.urlencoded({ extended: false}))
 app.use(express.json())
+app.use(cors())
 
 let randomUser = {}
 let goingLi = []
@@ -14,6 +16,8 @@ function handleData(user, thisList) {
     if(!duplicate) {
         thisList.push(user);
         console.log('ITEM PUSHED TO GOING LIST')
+    } else {
+        console.log('DID NOT PUSH')
     }
 }
 
@@ -21,28 +25,30 @@ function handleData(user, thisList) {
 
 app.get('/api', (req, res) => {
     axios.get('https://randomuser.me/api/').then((response) => {
+        console.log(response.data.results[0].name.first)
         res.json(response.data)
-    })  
+    })
 })
 
 app.post('/api/going', (req, res) => {
     handleData(req.body, goingLi)
+    res.send('POST request called')
 })
 
 app.post('/api/notgoing', (req, res) => {
     handleData(req.body, notGoingLi)
+    res.send('POST request called')
 })
 
 
 // G O I N G   C O M P O N E N T   R E Q U E S T S
 
 app.get('/api/going', (req, res) => {
-    if(goingLi.length) {res.json(goingLi)}
-    console.log('got it')
+        res.json(goingLi)
 })
 
 app.get('/api/notgoing', (req, res) => {
-    if(notGoingLi.length) {res.json(notGoingLi)}
+        res.json(notGoingLi)
 })
 
 

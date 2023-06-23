@@ -38,16 +38,15 @@ export const counterSlice = createSlice({
       state.users = action.payload
       state.error = false;
       state.loading = false;
-      console.log(action.payload)
     },
     setError: (state) => {
       state.error = true;
     },
     goingTally: (state, action) => {
-      state.going = action.payload.length
+      state.going = action.payload
     },
     notGoingTally: (state, action) => {
-      state.notGoing = action.payload.length
+      state.notGoing = action.payload
     }
 
   },
@@ -60,42 +59,46 @@ export const { display, setError, goingTally, notGoingTally } = counterSlice.act
 // const user_id = small_id
 
 export const going = (user) => dispatch => {
-  axios.post('/api/going', user)
+  axios.post('http://localhost:3001/api/going', user)
+  .then(() => {
     dispatch(getUser(dispatch))
-    console.log('getUser dispatched')
+    })
 }
 
 export const notGoing = (user) => dispatch => {
-  axios.post('/api/notgoing', user)
+  axios.post('http://localhost:3001/api/notgoing', user)
+  .then(() => {
     dispatch(getUser(dispatch))
-    console.log('getNotGoing dispatched')
+    })
 }
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 export const getUser = () => (dispatch) => {
-  axios.get('/api')
+  console.log('getting user')
+  axios.get('http://localhost:3001/api')
   .then((resp) => { 
-   dispatch(display(resp.data))
+    console.log('receiving from backend')
+    dispatch(display(resp.data))
+    console.log('display dispatch sent')
   })
   .catch((err) => {
     dispatch(setError())
   })
-  axios.get('/api/going')
-  .then((resp) => { 
-    dispatch(goingTally(resp.data))
-  })
-  .catch((err) => {
-    dispatch(setError())
-  })
-  axios.get('/api/notgoing')
-  .then((resp) => { 
-    dispatch(notGoingTally(resp.data))
-  })
-  .catch((err) => {
-    dispatch(setError())
-  })
+  dispatch(tally())
 };
+
+export const tally = () => (dispatch) => {
+  axios.get('http://localhost:3001/api/going')
+  .then((resp) => { 
+    dispatch(goingTally(resp.data.length))
+  })
+
+  axios.get('http://localhost:3001/api/notgoing')
+  .then((resp) => { 
+    dispatch(notGoingTally(resp.data.length))
+  })
+}
 
 // export const response = await axios.get('https://randomuser.me/api/').then((res) => {
 //   dispatch(display(res.data))

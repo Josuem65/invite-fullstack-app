@@ -12,7 +12,7 @@ export function NotGoing() {
 
   useEffect(() => {
     dispatch(getNotGoing())
-  
+
   }, [])
 
   function itsEmpty() {
@@ -22,8 +22,6 @@ export function NotGoing() {
   }
 
   function notGoingFunc(notGoing) {
-    console.log('notGoingFun function called')
-    console.log(notGoing)
     return(
       <>
         <h2>They are not going</h2>
@@ -60,21 +58,3 @@ export function NotGoing() {
     empty ? itsEmpty() : notGoingFunc(usersNotGoing)
   )
 }
-
-{/* <div>
-<h2>They are not going</h2>
-{notGoing.map((user) => {
-  return (
-  <div className="mainUserDiv" key={user.user_id}>
-    <div className="userImg">
-      <img className="userThumbnail" src={user.picture.large}/>
-    </div>
-    <ol className="userInfoLi">
-      <li>Name: {user.name.first} {user.name.last}</li>
-      <li>Phone: {user.phone}</li>
-      <li>Email: {user.email}</li>
-    </ol>
-  </div>
-  )
- })}
-</div> */}
